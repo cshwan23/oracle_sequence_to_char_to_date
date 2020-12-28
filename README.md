@@ -40,3 +40,40 @@ pk자리에 emp_sq.nextval 을 삽입해준다.
 
 drop sequence 시퀀스명 ;
 :  시퀀스 삭제
+
+
+
+# oracle to_char_to_date
+
+
+to_char
+
+문자가 아닌 형태의 자료형을(대표적으로 날짜형) 문자열로 바꾸는 변환함수
+
+
+select emp_no, emp_name,to_char(hire_date,'YYYY.MM.DD Q')||'/4분기' from employee;
+
+
+분기 / 요일 / 한글변경
+
+고용날짜를 YYYY.MM.DD Q  <-- Q는 분기 자료형이다.
+오라클에서 연결연산자는 || 이다. 
+DY는 day 즉 요일 자료형이다. 
+NLS_DATE_LANGUAGE = Korean 한글로 변환시켜준다,
+
+select emp_no, emp_name,to_char(hire_date,'YYYY.MM.DD Q')||'/4분기'||to_char(hire_date,'DY','NLS_DATE_LANGUAGE = Korean') from employee;
+
+
+
+
+select emp_no,emp_name,
+to_char(hire_date,'YYYY.MM.DD')||'('||to_char(hire_date,'DY','NLS_DATE_LANGUAGE = Korean') ||')'
+from employee;
+
+
+
+
+select emp_no, emp_name,to_char(hire_date,'YYYY.MM') from employee;
+
+
+
